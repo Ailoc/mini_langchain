@@ -1,0 +1,15 @@
+[project]
+name = "mini-langchain"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "langchain>=1.0.2",
+    "langchain-community>=0.4",
+    "langchain-deepseek>=1.0.0",
+    "langchain-mongodb>=0.7.1",
+    "langchain-openai>=1.0.1",
+    "pymongo>=4.15.3",
+    "python-dotenv>=1.1.1",
+]
