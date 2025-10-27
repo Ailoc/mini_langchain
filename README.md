@@ -19,12 +19,24 @@
 
 6️⃣ Runnables（LangChain 1.0 新核心）
 
-🧠 七、辅助组件（次核心）
+🚀 二、LangChain 1.0 的核心组件结构
 
-| 模块                  | 功能                                                         |
-| ------------------- | ---------------------------------------------------------- |
-| **Retrievers**      | 从文档中检索上下文（RAG）                                             |
-| **VectorStores**    | 文档向量数据库（如 FAISS、Chroma、Milvus、MongoDB Atlas Vector Search） |
-| **DocumentLoaders** | 加载 PDF、TXT、网页等文档                                           |
-| **TextSplitters**   | 文本分块（RAG 前处理）                                              |
-| **OutputParsers**   | 解析模型输出为结构化数据                                               |
+LangChain 1.0 可以分为 七大核心组件：
+
+模块	主要类	功能简述
+1️⃣ Prompts（提示模板）	ChatPromptTemplate, PromptTemplate, MessagesPlaceholder	管理系统提示词、人类提示词等，支持参数化模板。
+
+2️⃣ Models（模型接口）	ChatOpenAI, ChatAnthropic, ChatDeepSeek 等	封装LLM模型的调用接口，统一输入输出结构。
+
+3️⃣ Output Parsers（输出解析器）	StrOutputParser, StructuredOutputParser, PydanticOutputParser	将模型输出解析为字符串、结构化数据或JSON等。
+
+4️⃣ Runnables（可运行单元）	RunnableLambda, RunnableParallel, RunnableSequence, RunnableWithMessageHistory	1.0的核心抽象，用于构建、并行执行、分支、消息记忆等。
+
+5️⃣ Memory（记忆）	MongoDBChatMessageHistory, ConversationBufferMemory	保存上下文历史，配合 RunnableWithMessageHistory 使用。
+
+6️⃣ Chains（链式组合）	任意 Runnable 组合而成	通过 `
+
+7️⃣ Tools / Agents（工具与代理）	Tool, AgentExecutor, RunnableAgent	用于扩展功能，如检索、执行函数、调用外部API。
+
+## RAGs 检索增强生成
+主要用于为大模型提供额外的信息源，提升回答问题的质量。但有一个问题是，直接将大量的私有文档输送给大模型，者往往受到模型上下文的限制。
